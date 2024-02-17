@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [loginFailed, setLoginFailed] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -19,7 +20,10 @@ const LoginPage = () => {
 
   const handleSubmit = (
     values: { username: string; password: string },
-    { setSubmitting }: FormikHelpers<{ username: string; password: string }>
+    {
+      setSubmitting,
+      setFieldError,
+    }: FormikHelpers<{ username: string; password: string }>
   ) => {
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");
@@ -31,7 +35,12 @@ const LoginPage = () => {
       localStorage.setItem("loggedIn", "true");
       navigate("/home", { replace: true });
     } else {
-      alert("Invalid username or password");
+      setLoginFailed(true);
+
+      // Set field-specific errors
+      setFieldError("username", " ");
+      setFieldError("password", "Invalid username or password");
+
       setSubmitting(false);
     }
   };
@@ -39,6 +48,7 @@ const LoginPage = () => {
   return (
     <div>
       <h1>Login Page</h1>
+
       <Formik
         initialValues={{ username: "", password: "" }}
         validate={(values) => {
@@ -60,11 +70,19 @@ const LoginPage = () => {
               <Field type="text" name="username" />
               <ErrorMessage name="username" component="div" />
             </div>
+
             <div>
               <label htmlFor="password">Password</label>
               <Field type="password" name="password" />
               <ErrorMessage name="password" component="div" />
             </div>
+
+            {loginFailed && (
+              <div className="error">
+                Invalid login details. Please try again.
+              </div>
+            )}
+
             <button type="submit" disabled={isSubmitting}>
               Login
             </button>

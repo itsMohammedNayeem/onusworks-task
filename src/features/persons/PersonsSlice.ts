@@ -22,12 +22,25 @@ export const personsSlice = createSlice({
     addPerson: (state, action: PayloadAction<Person>) => {
       state.value.push(action.payload);
     },
-    // Add other reducers as necessary
+    updatePerson: (state, action) => {
+      const { name, age, profession } = action.payload;
+      const index = state.value.findIndex((person) => person.name === name);
+      if (index !== -1) {
+        state.value[index] = { name, age, profession };
+      }
+    },
   },
 });
 
-export const { addPerson } = personsSlice.actions;
+export const { addPerson, updatePerson } = personsSlice.actions;
 
-export const selectPersons = (state: RootState) => state.persons.value;
+export const selectPersons = (state: RootState): Person[] =>
+  state.persons.value;
+
+export const selectPersonByName = (
+  state: RootState,
+  name: string
+): Person | undefined =>
+  state.persons.value.find((person: Person) => person.name === name);
 
 export default personsSlice.reducer;

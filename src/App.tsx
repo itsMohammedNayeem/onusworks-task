@@ -32,7 +32,7 @@ const App = () => {
             element={<ProtectedRoute element={<HomeScreen />} />}
           />
           <Route
-            path="/profile"
+            path="/profile/:personName"
             element={<ProtectedRoute element={<ProfileScreen />} />}
           />
           <Route path="/" element={<Navigate replace to="/login" />} />
