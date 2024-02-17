@@ -64,4 +64,12 @@ npm run dev
 - **Tailwind CSS**: A utility-first CSS framework for quickly building custom designs.
 - **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
 
-### screenshots
+### Screenshots
+
+<img width="1049" alt="Screenshot 2024-02-18 at 12 41 44 AM" src="https://github.com/itsMohammedNayeem/onusworks-task/assets/127741549/490b0691-040d-4a1d-8a35-ca6d10ce9aaa">
+
+<img width="1049" alt="Screenshot 2024-02-18 at 12 42 02 AM" src="https://github.com/itsMohammedNayeem/onusworks-task/assets/127741549/60ab5e82-b673-4397-8de3-5c4f9aa36e2c">
+
+<img width="1049" alt="Screenshot 2024-02-18 at 12 42 11 AM" src="https://github.com/itsMohammedNayeem/onusworks-task/assets/127741549/63b8a4c8-7368-4e10-a214-cf012148ec3f">
+
+<img width="1049" alt="Screenshot 2024-02-18 at 12 42 32 AM" src="https://github.com/itsMohammedNayeem/onusworks-task/assets/127741549/bb6b0562-12cc-4494-8a37-79d9b4dec807">
