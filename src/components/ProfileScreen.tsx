@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectPersonByName, updatePerson } from "./PersonsSlice";
-import { RootState } from "../../store";
-import EditPersonModal from "../../components/EditPersonModal";
+import {
+  selectPersonByName,
+  updatePerson,
+} from "../features/persons/PersonsSlice";
+import { RootState } from "../store";
+import EditPersonModal from "./EditPersonModal";
 
 const ProfileScreen = () => {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addPerson, selectPersons } from "./PersonsSlice";
+import { addPerson, selectPersons } from "../features/persons/PersonsSlice";
 import { useState } from "react";
-import { AddPersonModal } from "../../components/AddPersonModal";
+import { AddPersonModal } from "./AddPersonModal";
 
 const HomeScreen = () => {
   const persons = useSelector(selectPersons);

@@ -5,8 +5,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import LoginPage from "./features/auth/LoginPage";
-import HomeScreen from "./features/persons/HomeScreen";
-import ProfileScreen from "./features/persons/ProfileScreen";
+import HomeScreen from "./components/HomeScreen";
+import ProfileScreen from "./components/ProfileScreen";
 import { FC, ReactElement } from "react";
 import { Provider } from "react-redux";
 import { store } from "./store";
