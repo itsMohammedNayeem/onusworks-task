@@ -13,7 +13,6 @@ interface EditPersonModalProps {
 }
 
 const EditPersonModal = ({ person, onClose, onSave }: EditPersonModalProps) => {
-  //   const [name, setName] = useState<string>(person.name);
   const [age, setAge] = useState<number>(person.age);
   const [profession, setProfession] = useState<string>(person.profession);
 
@@ -25,15 +24,6 @@ const EditPersonModal = ({ person, onClose, onSave }: EditPersonModalProps) => {
   return (
     <dialog open>
       <form onSubmit={handleSubmit}>
-        {/* <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label> */}
-
         <label>
           Age:
           <input
