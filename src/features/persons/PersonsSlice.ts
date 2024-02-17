@@ -1,15 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-
-interface Person {
-  name: string;
-  age: number;
-  profession: string;
-}
-
-interface PersonsState {
-  value: Person[];
-}
+import { Person, PersonsState } from "../../types/types";
 
 const initialState: PersonsState = {
   value: [],

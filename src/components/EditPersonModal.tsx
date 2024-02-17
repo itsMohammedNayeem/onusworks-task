@@ -1,16 +1,5 @@
 import { useState } from "react";
-
-interface Person {
-  name: string;
-  age: number;
-  profession: string;
-}
-
-interface EditPersonModalProps {
-  person: Person;
-  onClose: () => void;
-  onSave: (person: Person) => void;
-}
+import { EditPersonModalProps } from "../types/types";
 
 const EditPersonModal = ({ person, onClose, onSave }: EditPersonModalProps) => {
   const [age, setAge] = useState<number>(person.age);

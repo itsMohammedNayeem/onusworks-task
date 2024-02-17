@@ -1,10 +1,5 @@
 import { FormEvent, useState } from "react";
-
-interface AddPersonModalProps {
-  open: boolean;
-  onClose: () => void;
-  onSave: (person: { name: string; age: number; profession: string }) => void;
-}
+import { AddPersonModalProps } from "../types/types";
 
 export const AddPersonModal = ({
   open,

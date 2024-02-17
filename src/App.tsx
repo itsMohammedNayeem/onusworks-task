@@ -7,13 +7,10 @@ import {
 import LoginPage from "./features/auth/LoginPage";
 import HomeScreen from "./components/HomeScreen";
 import ProfileScreen from "./components/ProfileScreen";
-import { FC, ReactElement } from "react";
+import { FC } from "react";
 import { Provider } from "react-redux";
 import { store } from "./store";
-
-interface ProtectedRouteProps {
-  element: ReactElement;
-}
+import { ProtectedRouteProps } from "./types/types";
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({ element }) => {
   const isLoggedIn = localStorage.getItem("loggedIn") === "true";
