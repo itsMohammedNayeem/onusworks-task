@@ -1,66 +1,76 @@
-import { useEffect, useState } from "react";
-
-// Use React hooks to manage local state and effects (useState, useEffect).
-// Parse URL query parameters to get initialUsername and initialPassword, and store them in localStorage.
-// Implement form using Formik and validate against localStorage.
-// Redirect on successful login using React Router's useHistory.
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 
 const LoginPage = () => {
-  const history = useHistory();
-  const [initialUsername, setInitialUsername] = useState("");
-  const [initialPassword, setInitialPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const username = params.get("username");
-    const password = params.get("password");
+    const username = params.get("initialUsername");
+    const password = params.get("initialPassword");
     if (username && password) {
-      setInitialUsername(username);
-      setInitialPassword(password);
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
+      // Clear URL search parameters
+      navigate("/login", { replace: true });
     }
-  }, []);
+  }, [navigate]);
 
-  const validate = (values: { username: string; password: string }) => {
-    const errors: { username?: string; password?: string } = {};
-    if (values.username !== initialUsername) {
-      errors.username = "Invalid username";
-    }
-    if (values.password !== initialPassword) {
-      errors.password = "Invalid password";
-    }
-    return errors;
-  };
+  const handleSubmit = (
+    values: { username: string; password: string },
+    { setSubmitting }: FormikHelpers<{ username: string; password: string }>
+  ) => {
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
 
-  const handleSubmit = (values: { username: string; password: string }) => {
     if (
-      values.username === initialUsername &&
-      values.password === initialPassword
+      values.username === storedUsername &&
+      values.password === storedPassword
     ) {
-      history.push("/dashboard");
+      localStorage.setItem("loggedIn", "true");
+      navigate("/home", { replace: true });
     } else {
-      setError("Invalid username or password");
+      alert("Invalid username or password");
+      setSubmitting(false);
     }
   };
 
   return (
     <div>
       <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      <Formik
+        initialValues={{ username: "", password: "" }}
+        validate={(values) => {
+          const errors: { username?: string; password?: string } = {};
+          if (!values.username) {
+            errors.username = "Required";
+          }
+          if (!values.password) {
+            errors.password = "Required";
+          }
+          return errors;
+        }}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <div>
+              <label htmlFor="username">Username</label>
+              <Field type="text" name="username" />
+              <ErrorMessage name="username" component="div" />
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <Field type="password" name="password" />
+              <ErrorMessage name="password" component="div" />
+            </div>
+            <button type="submit" disabled={isSubmitting}>
+              Login
+            </button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
