@@ -88,7 +88,7 @@ export const AddPersonModal = ({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="py-2 px-4 bg-green-700 text-white rounded hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50"
+                    className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                   >
                     Save
                   </button>

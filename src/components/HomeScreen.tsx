@@ -33,7 +33,7 @@ const HomeScreen = () => {
   return (
     <div className="p-8 font-mono bg-gray-50 min-h-screen">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-semibold text-gray-800">Home Screen</h1>
+        <h1 className="text-3xl font-semibold text-gray-800">Home</h1>
         <button
           onClick={handleLogout}
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
@@ -81,7 +81,7 @@ const HomeScreen = () => {
         onClick={() => setIsModalOpen(true)}
         className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
       >
-        Add New Person
+        Add
       </button>
 
       <AddPersonModal
